@@ -1,0 +1,728 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{D4B0AFAC-A25C-411F-A853-D95056CD8E3A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DataBusinessLogicLibrary</RootNamespace>
+    <AssemblyName>DataBusinessLogicLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper.Extensions.Microsoft.DependencyInjection, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.Extensions.Microsoft.DependencyInjection.2.0.1\lib\net451\AutoMapper.Extensions.Microsoft.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.8.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DotNet.PlatformAbstractions, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.DotNet.PlatformAbstractions.1.1.1\lib\net451\Microsoft.DotNet.PlatformAbstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Configuration.8.0.0\lib\net462\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Configuration.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Configuration.FileExtensions.8.0.0\lib\net462\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Configuration.Json.8.0.0\lib\net462\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=1.1.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.1.1.0\lib\netstandard1.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyModel, Version=1.1.1.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.DependencyModel.1.1.1\lib\net451\Microsoft.Extensions.DependencyModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.FileProviders.Abstractions.8.0.0\lib\net462\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.FileProviders.Physical.8.0.0\lib\net462\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.FileSystemGlobbing.8.0.0\lib\net462\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Extensions.Primitives.8.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Win32.Primitives.4.3.0\lib\net46\Microsoft.Win32.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.AppContext, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.AppContext.4.3.0\lib\net463\System.AppContext.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Console, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Console.4.3.0\lib\net46\System.Console.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.DiagnosticSource.4.3.0\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Diagnostics.Tracing.4.3.0\lib\net462\System.Diagnostics.Tracing.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Globalization.Calendars.4.3.0\lib\net46\System.Globalization.Calendars.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression, Version=4.1.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Compression.4.3.0\lib\net46\System.IO.Compression.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem" />
+    <Reference Include="System.IO.Compression.ZipFile, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Compression.ZipFile.4.3.0\lib\net46\System.IO.Compression.ZipFile.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.FileSystem.4.3.0\lib\net46\System.IO.FileSystem.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives, Version=4.0.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.FileSystem.Primitives.4.3.0\lib\net46\System.IO.FileSystem.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Linq.4.3.0\lib\net463\System.Linq.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Linq.Expressions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Linq.Expressions.4.3.0\lib\net463\System.Linq.Expressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.Http.4.3.0\lib\net46\System.Net.Http.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Reflection.4.3.0\lib\net462\System.Reflection.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.4.3.0\lib\net462\System.Runtime.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.Extensions.4.3.0\lib\net462\System.Runtime.Extensions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.InteropServices.4.3.0\lib\net463\System.Runtime.InteropServices.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net463\System.Security.Cryptography.Algorithms.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Encodings.Web.8.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.Json.8.0.0\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Text.RegularExpressions.4.3.0\lib\net463\System.Text.RegularExpressions.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.ReaderWriter, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Xml.ReaderWriter.4.3.0\lib\net46\System.Xml.ReaderWriter.dll</HintPath>
+      <Private>True</Private>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Context\Application_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\AppointmentDoctor_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\AppointmentService_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\AppointmentStatus_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\AppointmentTransaction.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\AppointmentTransactionSendingDetail.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\AppointmentType_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\BankAccount_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Bank_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\CashBoxInOutTransaction.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\CashBoxPrintingConfiguration_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\CashBoxTransactionSignatureType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\CashBoxTransactionType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\CashBox_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\ChartOfAccountBalance.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\ChartOfAccountCodeMargin_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\ChartOfAccount_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\City_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\CommonTransactionType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Common\DBCommon.cs" />
+    <Compile Include="Context\Common\DBCommonExtension.cs" />
+    <Compile Include="Context\Common\DB_Configuration\MerkConfiguration.cs" />
+    <Compile Include="Context\Common\IDBCommon.cs" />
+    <Compile Include="Context\Common\MerkFinanceEntities.cs" />
+    <Compile Include="Context\Common\PrivateEnums.cs" />
+    <Compile Include="Context\Common\Repositories\IRepository.cs" />
+    <Compile Include="Context\Common\Repositories\Repository.cs" />
+    <Compile Include="Context\Common\UnitOfWork\IUnitOfWork.cs" />
+    <Compile Include="Context\Common\UnitOfWork\UnitOfWork.cs" />
+    <Compile Include="Context\Company_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Country_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Currency_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\CustomerType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Customer_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\DepartmentType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Department_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\DiscountType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\DoctorCategory_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\DoctorProfessionalFeesIssuingType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\DoctorRank_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\DoctorSpecialization_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\DoctorTaxType_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Doctor_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\EmployeeType_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Employee_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Entities\CustomEntities\City_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\Country_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\Department_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\Employee_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\Floor_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\InventoryStoreCategory_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\InventoryStore_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\Location_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\PaginationConfiguration_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\Person_cu.cs" />
+    <Compile Include="Context\Entities\CustomEntities\Region_cu.cs" />
+    <Compile Include="Context\Entities\StoreProcedures\GetEmployeesList_Result.cs" />
+    <Compile Include="Context\FinancialInterval_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Floor_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GetAppointmentTransactions_Result.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GetCashBoxTransactions_Result.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GetEmployeesList_Result.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\GetInentoryItemFinalQuantity_Result.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\HeightUnit_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\IdentificationCardType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\ImageType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InsuranceCarrier_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InsuranceCarrier_InsuranceLevel_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InsuranceLevel_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemBrand_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemCategory_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemGroupingItem_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemGrouping_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemGroupType_P.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemGroup_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemGroup_InventoryItem_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemInvoicingStrategy_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemOffers_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemPrice_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemSize_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemSize_P.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemStatePurchasingType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemStateSellingType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItemType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItem_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItem_PurchasingTax_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItem_RawMaterial_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItem_SellingTax_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryItem_UnitMeasurment_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryQueueTransactionStatus_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryRequestTransfer.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryStoreCategory_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryStoreTreeLinks_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryStore_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryStore_Employee_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryTrackingPeriod_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryTrackingType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryTransactionQueue.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryTransactionType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InventoryTransferTransaction.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Invoice.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InvoiceCostingStrategy_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InvoicePayment.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InvoicePaymentType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\InvoiceType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\JobTitle_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Location_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Manager_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\MaritalStatus_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\MedicationCategory_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\MerkFinanceEntities.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MerkFinanceEntities.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\MerkFinanceEntities.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\MerkFinanceEntities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MerkFinanceEntities.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Context\MilitaryStatus_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Month_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Organization_Application_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Organization_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Organization_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PaginationConfiguration_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Patient_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PaymentTransactionType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PaymentType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PersonChartOtAccountType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PersonRelativeType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PersonTitle_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PersonType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Person_ChartOfAccount_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Person_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Person_IdentificationCardType_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Person_Phone_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PhoneType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\PriceType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Region_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Religion_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\RoleRegistration_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Role_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\ServiceCategory_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\ServiceType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Service_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\SizeUnitMeasure_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\sp_helpdiagrams_Result.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\SupplierType_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Supplier_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\sysdiagram.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Tax_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\Tax_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\TemperatureUnit_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\TimeDuration_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\UnitMeasurment_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\UnitMeasurment_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\UserGroup_Application_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\UserGroup_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\User_Application_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\User_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\User_UserGroup_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\WeightUnit_p.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Context\WorkingShiftTitle_cu.cs">
+      <DependentUpon>MerkFinanceEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <EntityDeploy Include="Context\MerkFinanceEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>MerkFinanceEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Context\MerkFinanceEntities.edmx.diagram">
+      <DependentUpon>MerkFinanceEntities.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Context\MerkFinanceEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MerkFinanceEntities.edmx</DependentUpon>
+      <LastGenOutput>MerkFinanceEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Context\MerkFinanceEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>MerkFinanceEntities.edmx</DependentUpon>
+      <LastGenOutput>MerkFinanceEntities.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>
